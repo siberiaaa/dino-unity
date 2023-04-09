@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI hiscoreText;
     public Button retryButton;
+    public Button resetHighscore;
 
     private float score;
     private Player player;
@@ -68,6 +69,7 @@ public class GameManager : MonoBehaviour
 
         gameOverText.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
+        resetHighscore.gameObject.SetActive(false);
 
         UpdateHighScore();
     }
@@ -84,6 +86,7 @@ public class GameManager : MonoBehaviour
 
         gameOverText.gameObject.SetActive(true);
         retryButton.gameObject.SetActive(true);
+        resetHighscore.gameObject.SetActive(true);
 
         UpdateHighScore();
     }
@@ -109,8 +112,11 @@ public class GameManager : MonoBehaviour
         }
 
         hiscoreText.text = Mathf.FloorToInt(hiscore).ToString("D5");
+    }
 
-        
- 
+    public void ResetHighscore()
+    {
+        PlayerPrefs.DeleteKey("hiscore");
+        hiscoreText.text = "00000";
     }
 }
